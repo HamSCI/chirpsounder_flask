@@ -1,8 +1,32 @@
 <!doctype html>
-<title> {{conf.station}} Chirpsounder2 Receiver</title>
-<h1>{{conf.station}} Chirpsounder2 Receiver</h1>
-{{conf.QTH}} {{conf.grid}} <br> <br>
+<head>
+<title>{{conf.station}} Chirpsounder2 Receiver</title>
+<style>
+table, th, td {
+      border: 1px solid black;
+}
+</style>
+</head>
 
+<body>
+<h1>{{conf.station}} Chirpsounder2 Receiver</h1>
+{{conf.QTH}} {{conf.grid}} <br>
+Data updates every hour. <br> <br>
+
+<table>
+<tr>
+	<th>Date</td>
+	<th>Number Chirp Files</td>
+	<th>Number LFM Files</td>
+	<th>Number PNG Files</td>
+</tr>
 {% for dayd in ds.days %}
-<a href={{dayd.url}}>{{dayd.day}}</a><br>
+<tr>
+	<td><a href="{{dayd.url}}">{{dayd.day}}</a></td>
+	<td>{{dayd.n_chirp}}</td>
+	<td>{{dayd.n_lfm}}</td>
+	<td>{{dayd.n_png}}</td>
+</tr>
 {% endfor %}
+</table>
+</body>

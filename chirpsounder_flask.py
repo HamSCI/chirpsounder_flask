@@ -8,7 +8,7 @@ conf = {}
 conf['station']     = 'W2NAF'
 conf['QTH']         = 'Spring Brook Township, Pennsylvania'
 conf['grid']        = 'FN21ei'
-conf['data_path']   = 'static'
+conf['data_path']   = '/var/www/chirpsounder_flask/static'
 
 @app.route('/')
 def index():
@@ -19,13 +19,19 @@ def index():
     days    = []
 
     for fpath in fpaths:
-        day = os.path.basename(fpath)
-        url = url_for('display_day',day=day)
+        day     = os.path.basename(fpath)
+        url     = url_for('display_day',day=day)
+        n_chirp = len(glob.glob(os.path.join(fpath,'*chirp*.h5')))
+        n_lfm   = len(glob.glob(os.path.join(fpath,'*lfm*.h5')))
+        n_png   = len(glob.glob(os.path.join(fpath,'*.png')))
 
         dct = {}
-        dct['fpath'] = fpath
-        dct['day']   = day
-        dct['url']   = url
+        dct['fpath']    = fpath
+        dct['day']      = day
+        dct['url']      = url
+        dct['n_chirp']  = n_chirp
+        dct['n_lfm']    = n_lfm
+        dct['n_png']    = n_png
         days.append(dct)
 
     ds['days']  = days
@@ -43,7 +49,9 @@ def display_day(day):
     lfms    = []
     for png in pngs:
         dct = {}
-        dct['png'] = png
+        basename    = os.path.basename(png)
+        png_path    = os.path.join(day,basename)
+        dct['png'] = url_for('static',filename=png_path)
         lfms.append(dct)
 
     ds['day']       = day
