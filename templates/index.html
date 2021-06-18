@@ -1,0 +1,8 @@
+<!doctype html>
+<title> {{conf.station}} Chirpsounder2 Receiver</title>
+<h1>{{conf.station}} Chirpsounder2 Receiver</h1>
+{{conf.QTH}} {{conf.grid}} <br> <br>
+
+{% for dayd in ds.days %}
+<a href={{dayd.url}}>{{dayd.day}}</a><br>
+{% endfor %}

@@ -1,0 +1,23 @@
+<!doctype html>
+<head>
+<title> {{conf.station}} Chirpsounder2 Receiver</title>
+<style>
+table, th, td {
+      border: 1px solid black;
+}
+</style>
+</head>
+
+<body>
+<h1>{{ds.day}}</h1>
+
+Total Ionograms: {{ds.n_iono}} <br>
+
+<table>
+    {% for lfmd in ds.lfms %}
+        <tr>
+            <td><img src="{{lfmd.png}}"></td>
+        </tr>
+    {% endfor %}
+</table>
+</body>
