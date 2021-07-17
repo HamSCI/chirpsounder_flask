@@ -34,7 +34,7 @@ def index():
         dct['n_png']    = n_png
         days.append(dct)
 
-    ds['days']  = days
+    ds['days']  = days[::-1]
 
     return render_template('index.html',ds=ds,conf=conf)
 
