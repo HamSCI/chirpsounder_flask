@@ -23,7 +23,7 @@ def index():
         url     = url_for('display_day',day=day)
         n_chirp = len(glob.glob(os.path.join(fpath,'*chirp*.h5')))
         n_lfm   = len(glob.glob(os.path.join(fpath,'*lfm*.h5')))
-        n_png   = len(glob.glob(os.path.join(fpath,'*.png')))
+        n_png   = len(glob.glob(os.path.join(fpath,'lfm*.png')))
 
         dct = {}
         dct['fpath']    = fpath
